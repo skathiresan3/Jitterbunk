@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'styles.css' %}">
+    <title>About</title>
+</head>
+<body>
+    <h1>{{name}}'s Bunks!!</h1>
+
+    <div class="bunks">
+        {% for bunk in bunk_list%}
+        {% if bunk.from_user.username == name %}
+        <div class="bunk">
+            <h1 style="font-weight: normal;">{{bunk.from_user.username}} <img src={{bunk.from_user.photo}}> bunks <img src={{bunk.to_user.photo}}> {{bunk.to_user.username}}</h1>
+        </div>
+        {% endif %}
+        {% endfor %}
+    </div>
+    
+</body>
+</html>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Website</title>
+    <link rel="stylesheet" href="{% static 'styles.css' %}">
+</head>
+<body>
+    <h1>Welcome to My Website</h1>
+    <p>This is Sachin Kathiresan, the developer of this project. </p>
+    {% for name in names%}
+    <span class="title"><a href="{% url 'detail' name=name %}">{{name}}</a></span>
+    {% endfor %}
+    <form action="{% url 'add_bunk' %}" method="POST">
+        {% csrf_token %}
+        <input type="text" name="from_user" placeholder="From User">
+        <input type="text" name="to_user" placeholder="To User">
+        <button type="submit">Add Bunk</button>
+    </form>
+    <div class="bunks">
+        {% for bunk in bunk_list%}
+        <div class="bunk">
+            <h1 style="font-weight: normal;">{{bunk.from_user.username}} <img src={{bunk.from_user.photo}}> bunks <img src={{bunk.to_user.photo}}> {{bunk.to_user.username}}</h1>
+        </div>
+        {% endfor %}
+    </div>
+    
+    <script src="script.js"></script>
+</body>
+</html>
